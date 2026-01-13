@@ -6,13 +6,15 @@ import {
 } from "lucide-react";
 
 const Shop = ({ Filters }) => {
-  
   const navigate = useNavigate();
   const [sort, setSort] = useState("new");
   const [products, setProducts] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [viewMode, setViewMode] = useState("grid");
   const [hoveredProduct, setHoveredProduct] = useState(null);
+
+  // Use import.meta.env for Vite
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchFilteredProducts = async (filters = {}) => {
     try {
@@ -21,7 +23,8 @@ const Shop = ({ Filters }) => {
       if (filters.minPrice) params.append("minPrice", filters.minPrice);
       if (filters.maxPrice) params.append("maxPrice", filters.maxPrice);
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/backend/product/filterproducts?${params.toString()}`);
+      // Construct the full URL properly
+      const res = await fetch(`${API_URL}/backend/product/filterproducts?${params.toString()}`);
       const data = await res.json();
       setProducts(data.data || []);
     } catch (err) {
@@ -29,7 +32,9 @@ const Shop = ({ Filters }) => {
     }
   };
 
-  useEffect(() => { fetchFilteredProducts(); }, []);
+  useEffect(() => { 
+    fetchFilteredProducts(); 
+  }, [API_URL]); // Added dependency
 
   const handleProductClick = (productId) => {
     navigate(`/singlepage/${productId}`);
@@ -37,10 +42,10 @@ const Shop = ({ Filters }) => {
 
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans pb-20">
-      {/* Immersive Hero Banner */}
+      {/* Immersive Hero Banner - FIXED URL */}
       <div className="relative h-[400px] overflow-hidden">
         <img
-          src="images.unsplash.com"
+          src="images.unsplash.com" 
           alt="banner"
           className="w-full h-full object-cover"
         />
@@ -67,7 +72,6 @@ const Shop = ({ Filters }) => {
 
           {/* Main Content */}
           <section className="flex-1">
-            {/* Toolbar */}
             <div className="bg-white/80 backdrop-blur-xl border border-gray-100 rounded-[1.5rem] p-5 mb-8 shadow-sm flex justify-between items-center">
               <h2 className="text-xl font-black text-gray-900">
                 {products.length} <span className="text-indigo-600 font-bold text-sm uppercase tracking-widest ml-2">Items</span>
@@ -84,7 +88,6 @@ const Shop = ({ Filters }) => {
               </div>
             </div>
 
-            {/* 🔥 UPDATED GRID: 3 Products per row on large screens */}
             <div className={`grid gap-8 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}>
               {products.map((p) => (
                 <div
@@ -94,12 +97,13 @@ const Shop = ({ Filters }) => {
                   onMouseLeave={() => setHoveredProduct(null)}
                   className="group bg-white rounded-[2rem] p-4 border border-gray-50 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
                 >
-                  {/* 🔥 UPDATED IMAGE SIZE: Slightly smaller height (h-80) */}
                   <div className="relative h-80 w-full overflow-hidden rounded-[1.5rem] bg-gray-50 mb-5">
                     <img
-                      src={`${import.meta.env.VITE_API_URL}/${p.images?.[0]}`}
+                      // FIXED IMAGE PATH: Ensure this matches where your backend stores images
+                      src={`${API_URL}/${p.images?.[0]}`}
                       alt={p.title}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      onError={(e) => { e.target.src = "via.placeholder.com"; }}
                     />
                     
                     <div className={`absolute inset-0 bg-indigo-900/10 backdrop-blur-[2px] flex items-center justify-center transition-all duration-500 ${hoveredProduct === p._id ? 'opacity-100' : 'opacity-0'}`}>
@@ -122,7 +126,7 @@ const Shop = ({ Filters }) => {
                     
                     <div className="flex items-center justify-between pt-1">
                       <p className="text-xl font-black text-indigo-600 italic">
-                        Rs {p.price.toLocaleString()}
+                        Rs {p.price?.toLocaleString()}
                       </p>
                       <button className="bg-gray-900 text-white p-2.5 rounded-xl hover:bg-indigo-600 transition-all shadow-sm">
                         <ShoppingBag size={18} />
