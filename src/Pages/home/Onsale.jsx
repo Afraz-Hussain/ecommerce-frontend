@@ -8,7 +8,7 @@ const Onsale = () => {
   const [loading, setLoading] = useState(true);
   const [index, setIndex] = useState(0);
   const itemsPerPage = 4;
-  const BASE_URL = `${process.env.REACT_APP_API_URL}/backend/product/viewallproducts`;
+  const BASE_URL = process.env.REACT_APP_API_URL + "/backend/product/viewallproducts";
 
   useEffect(() => {
     const fetchOnSale = async () => {
@@ -112,8 +112,8 @@ const Onsale = () => {
 
       {/* Global CSS for Font */}
       <style>{`
-        @import url('fonts.googleapis.com');
-        .font-serif { font-family: 'Playfair Display', serif; }
+       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
       `}</style>
     </div>
   );
