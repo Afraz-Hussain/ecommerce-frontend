@@ -4,7 +4,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const HomeSection = () => {
-  const BASE_URL = `${process.env.REACT_APP_API_URL}/cate/allcats`;
+  const BASE_URL = `${process.env.VITE_API_URL}/cate/allcats`;
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 

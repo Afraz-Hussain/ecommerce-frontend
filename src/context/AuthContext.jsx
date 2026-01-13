@@ -17,7 +17,7 @@ export const AuthContextProvider = ({ children }) => {
 
     setLoading(true); 
     const res = await axios.post(
-      `${process.env.REACT_APP_API_URL}/backend/auth/loginuser`,
+      `${process.env.VITE_API_URL}/backend/auth/loginuser`,
       data,
       { withCredentials: true }
     );
@@ -31,14 +31,14 @@ export const AuthContextProvider = ({ children }) => {
   const register = async (data) => {
     setLoading(true);
     await axios.post(
-      `${process.env.REACT_APP_API_URL}/backend/auth/createuser`,
+      `${process.env.VITE_API_URL}/backend/auth/createuser`,
       data
     );
     setLoading(false); 
   };
   const logout = async () => {
     await axios.post(
-      `${process.env.REACT_APP_API_URL}/backend/auth/logoutuser`,
+      `${process.env.VITE_API_URL}/backend/auth/logoutuser`,
       {},
       { withCredentials: true }
     );

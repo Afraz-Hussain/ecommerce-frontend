@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Categs = () => {
-  const base_URL=`${process.env.REACT_APP_API_URL}/backend`;
+  const base_URL=`${process.env.VITE_API_URL}/backend`;
   const [cats, setCats] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();

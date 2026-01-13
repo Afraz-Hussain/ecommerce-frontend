@@ -8,7 +8,7 @@ const Onsale = () => {
   const [loading, setLoading] = useState(true);
   const [index, setIndex] = useState(0);
   const itemsPerPage = 4;
-  const BASE_URL = process.env.REACT_APP_API_URL + "/backend/product/viewallproducts";
+  const BASE_URL = process.env.VITE_API_URL + "/backend/product/viewallproducts";
 
   useEffect(() => {
     const fetchOnSale = async () => {
@@ -78,7 +78,7 @@ const Onsale = () => {
               {/* Image Container with Zoom */}
               <div className="relative h-80 w-full overflow-hidden mb-6 rounded-lg bg-gray-50">
                 <img
-                 src={`${process.env.REACT_APP_API_URL}/${p.images?.[0]}`}
+                 src={`${process.env.VITE_API_URL}/${p.images?.[0]}`}
                   alt={p.title}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />

@@ -3,7 +3,7 @@ import axios from "axios";
 import { ArrowLeft, ArrowRight, Star, ShoppingCart } from "lucide-react";
 
 const TrendingProducts = () => {
-  const BASE_URL = `${process.env.REACT_APP_API_URL}/product/viewallproducts`;
+  const BASE_URL = `${process.env.VITE_API_URL}/product/viewallproducts`;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [index, setIndex] = useState(0);
@@ -83,7 +83,7 @@ const TrendingProducts = () => {
           
               <div className="relative h-60 w-full overflow-hidden mb-6 rounded-lg bg-gray-50">
                 <img
-                  src={`${process.env.REACT_APP_API_URL}/${p.images?.[0]}`}
+                  src={`${process.env.VITE_API_URL}/${p.images?.[0]}`}
                   alt={p.title}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
@@ -111,8 +111,8 @@ const TrendingProducts = () => {
       )}
 
       <style>{`
-        @import url('fonts.googleapis.com');
-        .font-serif { font-family: 'Playfair Display', serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
       `}</style>
     </div>
   );

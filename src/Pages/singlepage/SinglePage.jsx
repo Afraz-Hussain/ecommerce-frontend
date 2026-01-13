@@ -20,8 +20,9 @@ const SinglePage = () => {
   const [quantity, setQuantity] = useState(1);
   const [addingToCart, setAddingToCart] = useState(false);
 
-  const API_BASE_URL = `${process.env.REACT_APP_API_URL}/backend/product`;
-
+  const API_BASE_URL = `${process.env.VITE_API_URL}/backend/product`;
+ 
+  
   const increaseQty = () => setQuantity((prev) => prev + 1);
   const decreaseQty = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
   
@@ -38,7 +39,7 @@ const SinglePage = () => {
     try {
       // Make API call to add to cart
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/backend/cart/create`,
+        `${process.env.VITE_API_URL}/backend/cart/create`,
         {
           productId: product._id,
           quantity: quantity,
@@ -148,7 +149,7 @@ const SinglePage = () => {
             <img
               src={
                 product.images?.length
-                  ? `${process.env.REACT_APP_API_URL}/${product.images[selectedImage]}`
+                  ? `${process.env.VITE_API_URL}/${product.images[selectedImage]}`
                   : "https://via.placeholder.com/400"
               }
               alt={product.title}
@@ -161,7 +162,7 @@ const SinglePage = () => {
                 {product.images.map((img, idx) => (
                   <img
                     key={idx}
-                    src={`${process.env.REACT_APP_API_URL}/${img}`}
+                    src={`${process.env.VITE_API_URL}/${img}`}
                     alt={`${product.title} ${idx + 1}`}
                     onClick={() => setSelectedImage(idx)}
                     className={`w-20 h-20 object-cover rounded cursor-pointer border-2 transition ${
@@ -243,7 +244,7 @@ const SinglePage = () => {
                   <img 
                     src={
                       itm.images?.length 
-                        ? `${process.env.REACT_APP_API_URL}/${itm.images[0]}`
+                        ? `${process.env.VITE_API_URL}/${itm.images[0]}`
                         : "https://via.placeholder.com/400"
                     } 
                     alt={itm.title} 

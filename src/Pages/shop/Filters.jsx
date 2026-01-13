@@ -19,7 +19,7 @@ const Filters = ({ onFilterChange }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/backend/cate/allcats`);
+        const res = await axios.get(`${process.env.VITE_API_URL}/backend/cate/allcats`);
         setCategories(res.data );
       } catch (err) {
         console.error('Error fetching categories:', err);

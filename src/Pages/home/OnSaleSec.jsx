@@ -4,7 +4,7 @@ import { ArrowUpRight, Heart, Sparkles, Star, TrendingUp, Zap } from "lucide-rea
 const OnSaleSec = () => {
   const [products, setProducts] = useState([]);
   const [activeID, setActiveID] = useState(null);
-  const BASE_URL = `${process.env.REACT_APP_API_URL}/product/viewallproducts`;
+  const BASE_URL = `${process.env.VITE_API_URL}/product/viewallproducts`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -125,7 +125,7 @@ const OnSaleSec = () => {
                         
                         {/* Product Image */}
                         <img 
-                          src={`${process.env.REACT_APP_API_URL}/${p.images?.[0]}`}
+                          src={`${process.env.VITE_API_URL}/${p.images?.[0]}`}
                           alt={p.title}
                           className={`w-full h-full object-cover transition-all duration-1000 ${
                             activeID === p._id ? 'scale-110 brightness-110' : 'scale-100'

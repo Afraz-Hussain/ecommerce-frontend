@@ -21,7 +21,7 @@ const Shop = ({ Filters }) => {
       if (filters.minPrice) params.append("minPrice", filters.minPrice);
       if (filters.maxPrice) params.append("maxPrice", filters.maxPrice);
 
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/backend/product/filterproducts?${params.toString()}`);
+      const res = await fetch(`${process.env.VITE_API_URL}/backend/product/filterproducts?${params.toString()}`);
       const data = await res.json();
       setProducts(data.data || []);
     } catch (err) {
@@ -97,7 +97,7 @@ const Shop = ({ Filters }) => {
                   {/* 🔥 UPDATED IMAGE SIZE: Slightly smaller height (h-80) */}
                   <div className="relative h-80 w-full overflow-hidden rounded-[1.5rem] bg-gray-50 mb-5">
                     <img
-                      src={`${process.env.REACT_APP_API_URL}/${p.images?.[0]}`}
+                      src={`${process.env.VITE_API_URL}/${p.images?.[0]}`}
                       alt={p.title}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
