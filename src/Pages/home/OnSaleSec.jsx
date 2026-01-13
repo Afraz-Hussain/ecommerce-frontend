@@ -4,7 +4,8 @@ import { ArrowUpRight, Heart, Sparkles, Star, TrendingUp, Zap } from "lucide-rea
 const OnSaleSec = () => {
   const [products, setProducts] = useState([]);
   const [activeID, setActiveID] = useState(null);
-  const BASE_URL = `${import.meta.env.VITE_API_URL}/product/viewallproducts`;
+
+  const BASE_URL = `${import.meta.env.VITE_API_URL}/backend/product/viewallproducts`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +18,7 @@ const OnSaleSec = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [BASE_URL]);
 
   return (
     <div className=" mt-10 rounded-sm w-full py-30  mb-20
@@ -125,7 +126,7 @@ const OnSaleSec = () => {
                         
                         {/* Product Image */}
                         <img 
-                          src={`${import.meta.env.VITE_API_URL}/${p.images?.[0]}`}
+                         src={`${import.meta.env.VITE_API_URL}/${p.images?.[0]}`}
                           alt={p.title}
                           className={`w-full h-full object-cover transition-all duration-1000 ${
                             activeID === p._id ? 'scale-110 brightness-110' : 'scale-100'

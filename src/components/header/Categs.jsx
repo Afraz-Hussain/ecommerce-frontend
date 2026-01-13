@@ -24,7 +24,7 @@ const Categs = () => {
       }
     };
     fetchAllCategories();
-  }, []);
+  }, [base_URL]);
 
   return (
     <nav className="bg-white/50 backdrop-blur-sm border-b border-gray-100">
