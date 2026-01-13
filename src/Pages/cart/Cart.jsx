@@ -26,7 +26,7 @@ const Cart = () => {
   const fetchCart = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/backend/cart/gcart`,
+        `${import.meta.env.REACT_APP_API_URL}/backend/cart/gcart`,
         { withCredentials: true }
       );
       setcartproducts(res.data.products);
@@ -88,7 +88,7 @@ const Cart = () => {
                     {/* Product Image */}
                     <div className="relative w-full sm:w-40 h-40 overflow-hidden rounded-2xl bg-gray-50">
                       <img 
-                        src={`${process.env.REACT_APP_API_URL}/${image}`} 
+                        src={`${import.meta.env.REACT_APP_API_URL}/${image}`} 
                         alt={title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />

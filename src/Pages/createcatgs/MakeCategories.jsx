@@ -12,7 +12,7 @@ const MakeCategories = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/cate/createcate`,
+        `${import.meta.env.REACT_APP_API_URL}/cate/createcate`,
         { cateName: catname },
         { 
           withCredentials: true,

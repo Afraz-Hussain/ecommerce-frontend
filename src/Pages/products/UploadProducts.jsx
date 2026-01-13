@@ -15,7 +15,7 @@ const UploadProducts = () => {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `${process.env.VITE_API_URL}/cate/allcats`,
+          `${import.meta.env.VITE_API_URL}/cate/allcats`,
           { withCredentials: true }
         );
         setcategories(res.data);

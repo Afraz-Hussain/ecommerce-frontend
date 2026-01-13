@@ -7,7 +7,7 @@ import axios from 'axios'
 const Checkout = () => {
   const { cart, totalPrice } = useSelector((state) => state.cart);
   const { register, handleSubmit, formState: { errors } } = useForm();
-const base_URL=`${process.env.REACT_APP_API_URL}`
+const base_URL=`${import.meta.env.REACT_APP_API_URL}`
 const onProcessOrder = async(data) => {
   console.log("Processing Order for:", data);
   
